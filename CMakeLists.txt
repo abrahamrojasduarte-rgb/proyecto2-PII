@@ -10,4 +10,17 @@ add_executable(ProyectoII main.cpp
         Entity.h
         Utiles.h
         Enemy.cpp
-        Enemy.h)
+        Enemy.h
+        CharacterManager.cpp
+        CharacterManager.h
+        Menu.cpp
+        Menu.h
+        EnemyManager.cpp
+        EnemyManager.h
+        Room.cpp
+        Room.h
+        SimpleRoom.cpp
+        SimpleRoom.h
+        BossRoom.cpp
+        BossRoom.h
+)

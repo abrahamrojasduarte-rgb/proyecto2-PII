@@ -11,8 +11,7 @@ private:
 
 public:
     Enemy();
-    Enemy(string name, int health, int attack, bool boss);
-    bool isBoss() const;
+    Enemy(string name, int health, int attack);
     string toString() const override;
 };
 #endif //PROYECTOII_ENEMY_H

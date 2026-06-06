@@ -3,21 +3,17 @@
 //
 
 #include "Enemy.h"
-Enemy::Enemy() : Entity(), boss(false) {}
+Enemy::Enemy() : Entity(){}
 
-Enemy::Enemy(string name, int health, int attack, bool boss)
-    : Entity(name, health, attack), boss(boss) {}
+Enemy::Enemy(string name, int health, int attack)
+    : Entity(name, health, attack){}
 
-bool Enemy::isBoss() const {
-    return boss;
-}
 
 string Enemy::toString() const {
     stringstream ss;
     ss << "\nEnemy\n"
      << "Name: " << name << endl
      << "Health: " << health << endl
-     << "Attack: " << attack << endl
-     << "Boss: " << (boss ? "Yes" : "No") << endl;
+     << "Attack: " << attack << endl;
     return ss.str();
 }
