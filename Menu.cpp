@@ -3,9 +3,9 @@
 //
 
 #include <iostream>
-
 #include "Menu.h"
 #include "CharacterManager.h"
+#include "GameEngine.h"
 
 using namespace std;
 
@@ -30,6 +30,9 @@ namespace Menu {
         Character hero = manager.loadCharacter(option);
 
         cout<<hero.toString();
-    }
 
+        GameEngine game(hero);
+        game.setupLevels();
+        game.startGame();
+    }
 }

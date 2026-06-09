@@ -23,4 +23,12 @@ add_executable(ProyectoII main.cpp
         SimpleRoom.h
         BossRoom.cpp
         BossRoom.h
+        GameEngine.cpp
+        GameEngine.h
+        CombatSystem.cpp
+        CombatSystem.h
+        Logger.cpp
+        Logger.h
+        Level.cpp
+        Level.h
 )

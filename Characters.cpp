@@ -12,8 +12,8 @@ Character::Character(string name, int health, int attack) :Entity(name,health,at
 
 string Character::toString() const {
     stringstream ss;
-    ss <<"Name :"<<this->name
-    <<"\nHealth :"<<this->health
-    <<"\nAttack :"<<this->getAttack()<<"\n";
+    ss << "Name: "<<this->name
+    <<"\nHealth: "<<this->health
+    <<"\nAttack: "<<this->getAttack()<<"\n";
     return ss.str();
 }

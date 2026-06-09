@@ -14,7 +14,7 @@ protected:
 public:
     virtual ~Room()=default;
     virtual void generateRoom()=0;
-    vector<Enemy> getEnemies();
+    vector<Enemy>& getEnemies();
 };
 
 

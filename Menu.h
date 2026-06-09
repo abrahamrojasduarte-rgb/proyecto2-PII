@@ -5,7 +5,6 @@
 #ifndef PROYECTOII_MENU_H
 #define PROYECTOII_MENU_H
 
-
 namespace Menu {
     void startMenu();
 };

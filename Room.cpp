@@ -3,6 +3,6 @@
 //
 
 #include "Room.h"
-vector<Enemy> Room::getEnemies() {
+vector<Enemy>& Room::getEnemies() {
     return enemies;
 }

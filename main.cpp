@@ -13,7 +13,5 @@ int main() {
         cout << "Error: " << e.what() << endl;
     }
 
-
-    cout<<"Wassup nagger";
     return 0;
 }

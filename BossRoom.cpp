@@ -11,6 +11,7 @@ BossRoom::BossRoom(string bossName)
 void BossRoom::generateRoom() {
 
     EnemyManager manager;
-
+    cout<<"\n BOSS ROOM \n";
+    enemies.clear();
     enemies.push_back(manager.getEnemyByName(bossName));
 }
