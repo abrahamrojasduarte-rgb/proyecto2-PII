@@ -16,8 +16,9 @@ Level::~Level() {
 void Level::setupLevel() {
     rooms.clear();
 
+    vector<string> enemyTypes = {"Skeleton", "Goblin", "Zombie"};
     for (int i = 0; i < 5; i++) {
-        rooms.push_back(new SimpleRoom("Skeleton"));
+        rooms.push_back(new SimpleRoom(enemyTypes));
     }
     rooms.push_back(new BossRoom("SkeletonKing"));
 }

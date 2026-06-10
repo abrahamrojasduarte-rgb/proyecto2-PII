@@ -4,16 +4,22 @@
 
 #include "CombatSystem.h"
 
-bool CombatSystem::fight(Character &player, Enemy &enemy) {
+#include "Ability.h"
+
+bool CombatSystem::fight(Characters &player, Enemy &enemy) {
     while (player.getHealth() > 0 && enemy.getHealth() > 0) {
+        player.getAbility()->onAttack(player, enemy);
         enemy.setHealth(enemy.getHealth() - player.getAttack());
         cout << "Player hits " << enemy.getName() << " (-"<< player.getAttack() << " HP)\n";
 
         if (enemy.getHealth() <= 0) break;
 
-        player.setHealth(player.getHealth() - enemy.getAttack());
-        cout << enemy.getName() << " hits player (-" << enemy.getAttack() << " HP)\n";
+        int damage = enemy.getAttack();
+        player.getAbility()->onDefense(player,enemy,damage);
+        player.setHealth(player.getHealth() - damage);
+        cout << enemy.getName() << " hits player (-" << damage << " HP)\n";
         cout << "Player HP: "<< player.getHealth() << endl;
+        player.getAbility()->onTurn(player);
     }
 
     return player.getHealth() > 0;

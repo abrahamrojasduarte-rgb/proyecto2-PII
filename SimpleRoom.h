@@ -9,9 +9,9 @@
 
 class SimpleRoom :public Room{
 private:
-    string enemyName;
+    vector<string> enemyTypes;
 public:
-    SimpleRoom(string m);
+    SimpleRoom(vector<string> types);
     void generateRoom() override;
 };
 

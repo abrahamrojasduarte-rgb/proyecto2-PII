@@ -8,7 +8,7 @@
 
 class CharacterManager {
 public:
-    Character loadCharacter(int option);
+    Characters loadCharacter(int option);
 };
 
 

@@ -4,10 +4,10 @@
 
 #include "CharacterManager.h"
 
-Character CharacterManager::loadCharacter(int option) {
+Characters CharacterManager::loadCharacter(int option) {
     ifstream file("characters.txt");
     if (!file) {
-        cout<<"file characters failed"<<endl;
+        throw runtime_error("characters.txt not found");
     }
 
     string name;
@@ -19,7 +19,7 @@ Character CharacterManager::loadCharacter(int option) {
     while(file >> name >> health >> attack) {
 
         if(counter == option) {
-            return Character(name, health, attack);
+            return Characters(name, health, attack);
         }
 
         counter++;

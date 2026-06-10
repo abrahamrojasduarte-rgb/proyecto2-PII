@@ -4,16 +4,46 @@
 
 #include "Characters.h"
 
-Character::Character() :Entity(){
+Characters::Characters() :Entity(){
 }
 
-Character::Character(string name, int health, int attack) :Entity(name,health,attack){
+Characters::Characters(string name, int health, int attack) :Entity(name,health,attack){
 }
 
-string Character::toString() const {
+void Characters::equipWeapon(int bonus) {
+    if (bonus <= weaponBonus) {
+        return;
+    }
+    attack -= weaponBonus;
+
+    weaponBonus = bonus;
+    attack += weaponBonus;
+}
+
+void Characters::heal(int amount) {
+    health += amount;
+
+    if (health > maxHealth) {
+        health = maxHealth;
+    }
+}
+
+string Characters::toString() const {
     stringstream ss;
-    ss << "Name: "<<this->name
-    <<"\nHealth: "<<this->health
-    <<"\nAttack: "<<this->getAttack()<<"\n";
+    ss << "Name: "<< name
+    <<"\nHealth: "<< health
+    <<"\nAttack: "<< attack<<"\n";
     return ss.str();
+}
+
+int Characters::getWeaponBonus() const {
+    return weaponBonus;
+}
+
+void Characters::setAbility(Ability* ability) {
+    this->ability = ability;
+}
+
+Ability* Characters::getAbility() const{
+    return ability;
 }

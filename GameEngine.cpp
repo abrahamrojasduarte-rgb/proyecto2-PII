@@ -5,12 +5,18 @@
 #include "GameEngine.h"
 #include <ctime>
 
-GameEngine::GameEngine(Character player) : player(player), logger("log.txt") {}
+GameEngine::GameEngine(Characters player) : player(player), logger("log.txt") {}
 
 void GameEngine::setupLevels() {
+    vector<string> bosses = {"SkeletonKing", "GoblinChief", "ZombieTyrant"};
+
     for (int i = 0; i < 3; i++) {
         Level* level = new Level();
         level->setupLevel();
+        vector<Room*>& rooms = level->getRooms();
+        delete rooms.back();
+        rooms.pop_back();
+        rooms.push_back(new BossRoom(bosses[i]));
         levels.push_back(level);
     }
 }
@@ -54,22 +60,44 @@ void GameEngine::startGame() {
 
                 if (enemy.getName() == "Skeleton") {
                     skeletonsKilled++;
-                } else if (enemy.getName() == "SkeletonKing") {
+                } else if (enemy.getName() == "SkeletonKing" || enemy.getName() == "GoblinChief" || enemy.getName() == "ZombieTyrant") {
                     bossesKilled++;
                     logger.log("Boss defeated!");
                 }
 
-                if (rand() % 3 == 0) {
-                    logger.log("Player found a weapon!");
+                ItemManager itemManager;
+
+                int drop = rand() % 2;
+
+                if (drop == 0) {
+                    Item<int> weapon = itemManager.getRandomWeapon();
+                    player.equipWeapon(weapon.getValue());
+
+                    if (weapon.getValue() > player.getWeaponBonus()) {
+                        player.equipWeapon(weapon.getValue());
+                        cout<<"You equipped: "<< weapon.getName() << " (+" << weapon.getValue() << " ATK\n";
+                        logger.log("Equipped weapon: " + weapon.getName());
+                    } else {
+                        cout<< "You found: "<< weapon.getName()<< " but it is weak.\n";
+                        logger.log("Ignored weaker weapon: " + weapon.getName());
+                    }
+                }
+                else if (drop == 1) {
+                    Item<int> potion = itemManager.getRandomPotion();
+                    player.heal(potion.getValue());
+
+                    cout<<"You used potion: " << potion.getName() << " (+"<< potion.getValue() << " HP)\n";
+
+                    logger.log("Player used potion: "+ potion.getName());
                 }
 
                 logger.log("Player health now: " + to_string(player.getHealth()));
             }
 
             roomNumber++;
-            player.setHealth(player.getHealth() + 20);
-            cout<<"You recover 20 HP\n";
-            logger.log("Player healed +20 HP");
+            player.heal(15);
+            cout<<"You recover 15 HP\n";
+            logger.log("Player healed +15 HP");
         }
         logger.log("Level " + to_string(levelNumber) + " completed");
         levelNumber++;

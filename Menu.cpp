@@ -6,6 +6,10 @@
 #include "Menu.h"
 #include "CharacterManager.h"
 #include "GameEngine.h"
+#include "KnightAbility.h"
+#include "PriestAbility.h"
+#include "RogueAbility.h"
+#include "WizardAbility.h"
 
 using namespace std;
 
@@ -27,7 +31,24 @@ namespace Menu {
         } while(option < 1 || option > 4);
 
         CharacterManager manager;
-        Character hero = manager.loadCharacter(option);
+        Characters hero = manager.loadCharacter(option);
+
+        Ability* ability = nullptr;
+        switch (option) {
+            case 1:
+                ability = new KnightAbility();
+                break;
+            case 2:
+                ability = new WizardAbility();
+                break;
+            case 3:
+                ability = new RogueAbility();
+                break;
+            case 4:
+                ability = new PriestAbility();
+                break;
+        }
+        hero.setAbility(ability);
 
         cout<<hero.toString();
 

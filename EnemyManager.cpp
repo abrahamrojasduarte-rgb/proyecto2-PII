@@ -7,6 +7,10 @@ vector<Enemy> EnemyManager::loadEnemies() {
 
     ifstream file("enemies.txt");
 
+    if (!file) {
+        throw runtime_error("enemies.txt not found");
+    }
+
     vector<Enemy> enemies;
 
     string name;
@@ -31,5 +35,5 @@ Enemy EnemyManager::getEnemyByName(string targetName) {
         }
     }
 
-    return Enemy();
+    throw runtime_error("Enemy not found: " + targetName);
 }

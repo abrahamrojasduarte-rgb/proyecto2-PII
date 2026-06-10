@@ -8,6 +8,7 @@
 #include "Level.h"
 #include "Logger.h"
 #include "CombatSystem.h"
+#include "ItemManager.h"
 #include <cstdlib>
 #include <iostream>
 #include <vector>
@@ -16,7 +17,7 @@ using namespace std;
 
 class GameEngine {
 private:
-    Character player;
+    Characters player;
     vector<Level*> levels;
     Logger logger;
 
@@ -25,7 +26,7 @@ private:
     int bossesKilled = 0;
 
 public:
-    GameEngine(Character player);
+    GameEngine(Characters player);
     void setupLevels();
     void startGame();
     void generateReport();

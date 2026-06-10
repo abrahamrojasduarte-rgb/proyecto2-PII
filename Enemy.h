@@ -5,6 +5,7 @@
 #ifndef PROYECTOII_ENEMY_H
 #define PROYECTOII_ENEMY_H
 #include "Utiles.h"
+#include "Entity.h"
 class Enemy : public Entity {
 private:
     bool boss;

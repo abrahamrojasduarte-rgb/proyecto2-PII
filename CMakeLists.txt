@@ -31,4 +31,16 @@ add_executable(ProyectoII main.cpp
         Logger.h
         Level.cpp
         Level.h
+        Item.h
+        ItemManager.cpp
+        ItemManager.h
+        Ability.h
+        KnightAbility.cpp
+        KnightAbility.h
+        RogueAbility.cpp
+        RogueAbility.h
+        WizardAbility.cpp
+        WizardAbility.h
+        PriestAbility.cpp
+        PriestAbility.h
 )

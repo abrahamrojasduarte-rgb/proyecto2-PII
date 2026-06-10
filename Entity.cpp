@@ -12,6 +12,7 @@ Entity::Entity() {
 Entity::Entity(string name, int health, int attack) {
     this->name = name;
     this->health = health;
+    this->maxHealth = health;
     this->attack = attack;
 }
 
@@ -21,6 +22,10 @@ string Entity::getName() const {
 
 int Entity::getHealth() const {
     return health;
+}
+
+int Entity::getMaxHealth() const {
+    return maxHealth;
 }
 
 int Entity::getAttack() const {
@@ -33,6 +38,10 @@ void Entity::setName(string name) {
 
 void Entity::setHealth(int health) {
     this->health = health;
+}
+
+void Entity::setMaxHealth(int maxHealth) {
+    this->maxHealth = maxHealth;
 }
 
 void Entity::setAttack(int attack) {

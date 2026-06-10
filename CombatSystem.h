@@ -11,7 +11,7 @@ using namespace std;
 
 class CombatSystem {
     public:
-    static bool fight(Character& player, Enemy& enemy);
+    static bool fight(Characters& player, Enemy& enemy);
 };
 
 

@@ -12,16 +12,19 @@ protected:
     string name;
     int health;
     int attack;
+    int maxHealth;
 public:
     Entity();
     Entity(string name, int health, int attack);
 
     string getName() const;
     int getHealth() const;
+    int getMaxHealth() const;
     int getAttack() const;
 
     void setName(string name);
     void setHealth(int health);
+    void setMaxHealth(int maxHealth);
     void setAttack(int attack);
 
     virtual ~Entity()=default;

@@ -7,7 +7,6 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "Entity.h"
 #include <vector>
 
 #endif //PROYECTOII_UTILES_H
