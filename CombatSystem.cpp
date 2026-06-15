@@ -3,24 +3,45 @@
 //
 
 #include "CombatSystem.h"
-
 #include "Ability.h"
 
-bool CombatSystem::fight(Characters &player, Enemy &enemy) {
-    while (player.getHealth() > 0 && enemy.getHealth() > 0) {
+CombatSystem::CombatResult CombatSystem::fight(Characters& player, Enemy& enemy, Logger& logger) {
+    CombatResult result = {false, 0, 0, 0};
+
+    logger.log("Combat started: " + player.getName() + " vs " + enemy.getName());
+
+    while (player.isAlive() && enemy.isAlive()) {
+        result.turnsElapsed++;
+
         player.getAbility()->onAttack(player, enemy);
-        enemy.setHealth(enemy.getHealth() - player.getAttack());
-        cout << "Player hits " << enemy.getName() << " (-"<< player.getAttack() << " HP)\n";
+        int playerDamage = player.getAttack();
+        enemy.setHealth(enemy.getHealth() - playerDamage);
+        result.damageDealt += playerDamage;
 
-        if (enemy.getHealth() <= 0) break;
+        cout << "  " << player.getName() << " attacks " << enemy.getName()
+             << " (-" << playerDamage << " HP)" << endl;
 
-        int damage = enemy.getAttack();
-        player.getAbility()->onDefense(player,enemy,damage);
-        player.setHealth(player.getHealth() - damage);
-        cout << enemy.getName() << " hits player (-" << damage << " HP)\n";
-        cout << "Player HP: "<< player.getHealth() << endl;
+        if (!enemy.isAlive()) break;
+
+        int enemyDamage = enemy.getAttack();
+        player.getAbility()->onDefense(player, enemy, enemyDamage);
+        player.setHealth(player.getHealth() - enemyDamage);
+        result.damageTaken += enemyDamage;
+
+        cout << "  " << enemy.getName() << " attacks " << player.getName()
+             << " (-" << enemyDamage << " HP)" << endl;
+        cout << "  [HP: " << player.getHealth() << "/" << player.getMaxHealth() << "]" << endl;
+
         player.getAbility()->onTurn(player);
     }
 
-    return player.getHealth() > 0;
+    result.playerWon = player.isAlive();
+
+    if (result.playerWon) {
+        logger.log("Victory! " + enemy.getName() + " defeated in " + to_string(result.turnsElapsed) + " turns");
+    } else {
+        logger.log("Defeat! " + player.getName() + " fell to " + enemy.getName());
+    }
+
+    return result;
 }

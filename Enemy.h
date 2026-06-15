@@ -9,10 +9,16 @@
 class Enemy : public Entity {
 private:
     bool boss;
+    int expReward;
 
 public:
     Enemy();
-    Enemy(string name, int health, int attack);
+    Enemy(string name, int health, int attack, bool isBoss = false);
+
+    bool isBoss() const;
+    int getExpReward() const;
+    void setBoss(bool isBoss);
+
     string toString() const override;
 };
 #endif //PROYECTOII_ENEMY_H

@@ -6,9 +6,10 @@
 #include "EnemyManager.h"
 
 #include <random>
-SimpleRoom::SimpleRoom(vector<string> types) {
-    this->enemyTypes = types;
+SimpleRoom::SimpleRoom(vector<string> types) : enemyTypes(types) {
+    roomName = "Dungeon Chamber";
 }
+
 void SimpleRoom::generateRoom() {
     enemies.clear();
 
@@ -20,11 +21,18 @@ void SimpleRoom::generateRoom() {
     uniform_int_distribution<> amountDist(1, 4);
     int amount = amountDist(gen);
 
-    uniform_int_distribution<> typeDist(0, enemyTypes.size() - 1);
+    uniform_int_distribution<> typeDist(0, (int)enemyTypes.size() - 1);
 
-    for(int i = 0; i < amount; i++) {
+    for (int i = 0; i < amount; i++) {
         string randomEnemy = enemyTypes[typeDist(gen)];
-
-        enemies.push_back(manager.getEnemyByName(randomEnemy));
+        try {
+            enemies.push_back(manager.getEnemyByName(randomEnemy));
+        } catch (const runtime_error& e) {
+            cerr << "Warning: " << e.what() << endl;
+        }
     }
+}
+
+string SimpleRoom::getRoomType() const {
+    return "Simple Room";
 }

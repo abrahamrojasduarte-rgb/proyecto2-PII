@@ -8,7 +8,8 @@
 
 class RogueAbility : public Ability{
     public:
-    void onDefense(Characters &player, Enemy &enemy, int &damage) override;
+    string getName() const override;
+    void onDefense(Characters& player, Enemy& enemy, int& damage) override;
 };
 
 

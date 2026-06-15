@@ -47,3 +47,19 @@ void Entity::setMaxHealth(int maxHealth) {
 void Entity::setAttack(int attack) {
     this->attack = attack;
 }
+
+bool Entity::isAlive() const {
+    return health > 0;
+}
+
+bool Entity::operator==(const Entity& other) const {
+    return name == other.name && health == other.health && attack == other.attack;
+}
+
+bool Entity::operator<(const Entity& other) const {
+    return health < other.health;
+}
+
+bool Entity::operator>(const Entity& other) const {
+    return health > other.health;
+}

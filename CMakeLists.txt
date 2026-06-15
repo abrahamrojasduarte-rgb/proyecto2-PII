@@ -43,4 +43,8 @@ add_executable(ProyectoII main.cpp
         WizardAbility.h
         PriestAbility.cpp
         PriestAbility.h
+        Inventory.cpp
+        Inventory.h
+        EventSystem.cpp
+        EventSystem.h
 )

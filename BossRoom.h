@@ -4,7 +4,7 @@
 
 #ifndef PROYECTOII_BOSSROOM_H
 #define PROYECTOII_BOSSROOM_H
-
+#include "Utiles.h"
 #include "Room.h"
 
 class BossRoom : public Room {
@@ -14,6 +14,7 @@ private:
 public:
     BossRoom(string bossName);
     void generateRoom() override;
+    string getRoomType() const override;
 };
 
 #endif //PROYECTOII_BOSSROOM_H

@@ -4,9 +4,13 @@
 
 #include "RogueAbility.h"
 
-void RogueAbility::onDefense(Characters &player, Enemy &enemy, int &damage) {
+string RogueAbility::getName() const {
+    return "Shadow Dodge";
+}
+
+void RogueAbility::onDefense(Characters& player, Enemy& enemy, int& damage) {
     if (rand() % 2 == 0) {
         damage = 0;
-        cout<<"DODGE DAMAGE\n";
+        cout << "  >> DODGE! (Shadow Dodge)" << endl;
     }
 }

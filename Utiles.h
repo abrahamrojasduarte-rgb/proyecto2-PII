@@ -8,5 +8,13 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <string>
+#include <memory>
+#include <stdexcept>
+#include <algorithm>
+#include <random>
+#include <ctime>
+#include <iomanip>
+#include <functional>
 
 #endif //PROYECTOII_UTILES_H

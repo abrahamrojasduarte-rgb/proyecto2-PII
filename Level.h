@@ -8,17 +8,25 @@
 #include "SimpleRoom.h"
 #include "BossRoom.h"
 #include <vector>
+#include <memory>
+
 using namespace std;
 
 class Level {
 private:
-    vector<Room *> rooms;
+    vector<Room*> rooms;
+    string levelName;
+    int levelNumber;
 
 public:
-    Level();
+    Level(int number = 1);
     ~Level();
-    void setupLevel();
-    vector<Room *>& getRooms();
+
+    void setupLevel(const vector<string>& enemyTypes, const string& bossName, int roomCount = 5);
+    vector<Room*>& getRooms();
+    string getLevelName() const;
+    int getLevelNumber() const;
+    int getRoomCount() const;
 };
 
 

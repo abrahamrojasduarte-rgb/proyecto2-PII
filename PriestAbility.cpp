@@ -4,9 +4,13 @@
 
 #include "PriestAbility.h"
 
-void PriestAbility::onTurn(Characters &player) {
+string PriestAbility::getName() const {
+    return "Divine Heal";
+}
+
+void PriestAbility::onTurn(Characters& player) {
     if (rand() % 2 == 0) {
         player.heal(25);
-        cout<< "Priest passive heal +25 HP\n";
+        cout << "  >> Divine Heal +25 HP" << endl;
     }
 }

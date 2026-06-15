@@ -4,6 +4,10 @@
 
 #include "KnightAbility.h"
 
-void KnightAbility::onDefense(Characters &player, Enemy &enemy, int &damage) {
-    damage = damage / 1.25;
+string KnightAbility::getName() const {
+    return "Shield Block";
+}
+
+void KnightAbility::onDefense(Characters& player, Enemy& enemy, int& damage) {
+    damage = (int)(damage * 0.8);
 }

@@ -29,6 +29,12 @@ public:
 
     virtual ~Entity()=default;
     virtual string toString() const =0;
+
+    bool isAlive() const;
+
+    bool operator==(const Entity& other) const;
+    bool operator<(const Entity& other) const;
+    bool operator>(const Entity& other) const;
 };
 
 

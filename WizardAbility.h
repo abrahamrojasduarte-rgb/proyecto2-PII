@@ -8,7 +8,8 @@
 
 class WizardAbility : public Ability{
     public:
-    void onAttack(Characters &player, Enemy &enemy) override;
+    string getName() const override;
+    void onAttack(Characters& player, Enemy& enemy) override;
 };
 
 

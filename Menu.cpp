@@ -17,20 +17,33 @@ namespace Menu {
 
     void startMenu() {
         cout << "      SOUL KNIGHT     " << endl;
-
-        cout << "\n1. Knight" << endl;
-        cout << "2. Wizard" << endl;
-        cout << "3. Rogue" << endl;
-        cout << "4. Priest" << endl;
-
-        int option;
-
-        do {
-            cout << "\nChoose a character: ";
-            cin >> option;
-        } while(option < 1 || option > 4);
+        cout << "Choose a character: " <<endl;
+        cout <<"    Name       Healt       Attack";
+        cout << "\n1. Knight     120          15" << endl;
+        cout << "2. Wizard     80           25" << endl;
+        cout << "3. Rogue      90           20" << endl;
+        cout << "4. Priest     100          10" << endl;
 
         CharacterManager manager;
+
+        cout << "\n  Character Abilities:" << endl;
+        cout << "  1. Knight  - Shield Block (reduces damage by 20%)" << endl;
+        cout << "  2. Wizard  - Arcane Surge (50% chance for critical hit)" << endl;
+        cout << "  3. Rogue   - Shadow Dodge (50% chance to evade)" << endl;
+        cout << "  4. Priest  - Divine Heal  (50% chance to heal each turn)" << endl;
+
+        int option;
+        do {
+            cout << "\n  Select character (1-" << manager.getCharacterCount() << "): ";
+            cin >> option;
+
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                option = 0;
+            }
+        } while (option < 1 || option > manager.getCharacterCount());
+
         Characters hero = manager.loadCharacter(option);
 
         Ability* ability = nullptr;
@@ -47,10 +60,15 @@ namespace Menu {
             case 4:
                 ability = new PriestAbility();
                 break;
+            default:
+                ability = new KnightAbility();
+                break;
         }
         hero.setAbility(ability);
 
-        cout<<hero.toString();
+        cout << "\n  Your hero:" << endl;
+        cout << hero.toString();
+        cout << "  Ability: " << ability->getName() << endl;
 
         GameEngine game(hero);
         game.setupLevels();

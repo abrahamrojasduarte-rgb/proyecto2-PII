@@ -7,12 +7,14 @@
 #include "Room.h"
 #include "Utiles.h"
 
-class SimpleRoom :public Room{
+class SimpleRoom : public Room {
 private:
     vector<string> enemyTypes;
+
 public:
     SimpleRoom(vector<string> types);
     void generateRoom() override;
+    string getRoomType() const override;
 };
 
 

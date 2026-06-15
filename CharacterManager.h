@@ -7,8 +7,15 @@
 #include "Characters.h"
 
 class CharacterManager {
+private:
+    vector<Characters> characters;
+
 public:
+    CharacterManager();
+    void loadFromFile(const string& filename);
     Characters loadCharacter(int option);
+    int getCharacterCount() const;
+    void displayAll() const;
 };
 
 

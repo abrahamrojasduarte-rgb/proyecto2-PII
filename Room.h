@@ -11,10 +11,17 @@ using namespace std;
 class Room {
 protected:
     vector<Enemy> enemies;
+    string roomName;
+
 public:
-    virtual ~Room()=default;
-    virtual void generateRoom()=0;
+    Room();
+    virtual ~Room() = default;
+    virtual void generateRoom() = 0;
+    virtual string getRoomType() const = 0;
+
     vector<Enemy>& getEnemies();
+    string getRoomName() const;
+    void setRoomName(const string& name);
 };
 
 

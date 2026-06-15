@@ -7,9 +7,16 @@
 #include "Utiles.h"
 #include "Enemy.h"
 class EnemyManager {
+private:
+    vector<Enemy> enemies;
+    bool loaded;
+
 public:
-    vector<Enemy> loadEnemies();
-    Enemy getEnemyByName(string n);
+    EnemyManager();
+    void loadFromFile(const string& filename);
+    vector<Enemy> getEnemies() const;
+    Enemy getEnemyByName(const string& targetName);
+    int getEnemyCount() const;
 };
 
 

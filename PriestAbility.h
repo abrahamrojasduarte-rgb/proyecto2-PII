@@ -8,7 +8,8 @@
 
 class PriestAbility : public Ability{
     public:
-    void onTurn(Characters &player) override;
+    string getName() const override;
+    void onTurn(Characters& player) override;
 };
 
 
