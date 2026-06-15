@@ -50,7 +50,6 @@ void EventSystem::loadEvents(const string& filename) {
                     GameEvent::Type eventType = static_cast<GameEvent::Type>(typeInt);
                     events.emplace_back(name, description, eventType, value);
                 } catch (const exception&) {
-                    // Skip malformed lines
                     continue;
                 }
             }
